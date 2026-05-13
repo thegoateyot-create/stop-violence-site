@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>די לאלימות</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #C0392B;
+    --deep-red: #96281B;
+    --blush: #F8D7DA;
+    --cream: #FFF8F5;
+    --warm-white: #FFFCFA;
+    --charcoal: #2C2C2C;
+    --soft-gray: #888;
+    --light-gray: #F2EDE9;
+    --accent-gold: #D4A853;
+    --text-dark: #1A1A1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ??? NAVBAR ??? */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(255,252,250,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(192,57,43,0.12);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled { box-shadow: 0 2px 24px rgba(192,57,43,0.10); }
+
+  .nav-logo {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: var(--crimson);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.3rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    padding: 0.45rem 0.9rem;
+    border-radius: 50px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    background: var(--blush);
+    color: var(--crimson);
+  }
+
+  .nav-links a.active {
+    background: var(--crimson);
+    color: white;
+  }
+
+  /* ??? HERO ??? */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--warm-white);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(192,57,43,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse-bg 8s ease-in-out infinite;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -15%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(212,168,83,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse-bg 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse-bg {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    padding: 2rem;
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--soft-gray);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: clamp(5rem, 14vw, 11rem);
+    line-height: 0.9;
+    color: var(--crimson);
+    letter-spacing: -3px;
+    position: relative;
+    animation: fadeUp 1.2s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-title span {
+    display: block;
+  }
+
+  .hero-title .word-di {
+    color: var(--text-dark);
+    font-size: clamp(3rem, 8vw, 7rem);
+    letter-spacing: -1px;
+  }
+
+  .hero-title .word-la {
+    color: var(--accent-gold);
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  .hero-title .word-main {
+    background: linear-gradient(135deg, var(--crimson) 0%, var(--deep-red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1.15rem;
+    color: var(--soft-gray);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeUp 1.2s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-cta {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1.2s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .btn-primary {
+    background: var(--crimson);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(192,57,43,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--crimson);
+    border: 2px solid var(--crimson);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: var(--blush);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--soft-gray);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .scroll-indicator::after {
+    content: '?';
+    font-size: 1.2rem;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ??? SECTIONS SHARED ??? */
+  section {
+    padding: 5rem 2rem;
+  }
+
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 0.78rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--crimson);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ??? ABOUT ??? */
+  #about {
+    background: var(--light-gray);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .about-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--crimson);
+    border-radius: 0 20px 20px 0;
+  }
+
+  .about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 40px rgba(192,57,43,0.12);
+  }
+
+  .about-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blush), var(--crimson));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+  }
+
+  .about-role {
+    font-size: 0.85rem;
+    color: var(--crimson);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .about-desc {
+    font-size: 0.9rem;
+    color: var(--soft-gray);
+    line-height: 1.6;
+  }
+
+  .about-placeholder {
+    font-size: 0.85rem;
+    color: #bbb;
+    font-style: italic;
+  }
+
+  /* ??? BOT ??? */
+  #bot {
+    background: var(--warm-white);
+    text-align: center;
+  }
+
+  .bot-card {
+    background: linear-gradient(135deg, var(--crimson) 0%, var(--deep-red) 100%);
+    border-radius: 28px;
+    padding: 3.5rem 2.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .bot-card::before {
+    content: '??';
+    position: absolute;
+    font-size: 12rem;
+    opacity: 0.07;
+    bottom: -2rem;
+    left: -2rem;
+    line-height: 1;
+  }
+
+  .bot-card h2 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .bot-card p {
+    font-size: 1rem;
+    opacity: 0.85;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .btn-white {
+    background: white;
+    color: var(--crimson);
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+
+  /* ??? SHARED BOARD ??? */
+  #shared {
+    background: var(--light-gray);
+  }
+
+  .board-intro {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .board-intro-text { flex: 1; min-width: 250px; }
+
+  .anon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--blush);
+    color: var(--crimson);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  .story-form {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+
+  .story-form h3 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    color: var(--text-dark);
+  }
+
+  .story-form textarea {
+    width: 100%;
+    min-height: 120px;
+    border: 2px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 1rem;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.2s;
+    direction: rtl;
+    outline: none;
+  }
+
+  .story-form textarea:focus { border-color: var(--crimson); }
+
+  .form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .anon-note {
+    font-size: 0.82rem;
+    color: var(--soft-gray);
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .story-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    position: relative;
+  }
+
+  .story-card:hover { transform: translateY(-3px); }
+
+  .story-card .quote-mark {
+    font-family: 'Rubik', sans-serif;
+    font-size: 4rem;
+    color: var(--blush);
+    line-height: 0.7;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .story-card .story-text {
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    line-height: 1.65;
+  }
+
+  .story-card .story-meta {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: #bbb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .story-card .like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+  }
+
+  .story-card .like-btn:hover, .story-card .like-btn.liked { color: var(--crimson); }
+
+  .empty-board {
+    text-align: center;
+    padding: 3rem;
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  /* ??? PUBLISHED STORIES ??? */
+  #stories {
+    background: var(--warm-white);
+  }
+
+  .published-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .pub-story {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    border-right: 5px solid var(--crimson);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .pub-story:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 40px rgba(192,57,43,0.10);
+  }
+
+  .pub-story-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .pub-label {
+    background: var(--blush);
+    color: var(--crimson);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+  }
+
+  .pub-story-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    flex: 1;
+  }
+
+  .pub-story-body {
+    font-size: 0.95rem;
+    color: var(--soft-gray);
+    line-height: 1.75;
+  }
+
+  /* ??? ADMIN ??? */
+  #admin-panel {
+    display: none;
+    background: #FFF8F5;
+    border: 2px dashed var(--crimson);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  #admin-panel h3 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    color: var(--crimson);
+    margin-bottom: 1.2rem;
+  }
+
+  .admin-form input, .admin-form textarea {
+    width: 100%;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.9rem;
+    direction: rtl;
+    margin-bottom: 0.8rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .admin-form input:focus, .admin-form textarea:focus { border-color: var(--crimson); }
+  .admin-form textarea { min-height: 100px; resize: vertical; }
+
+  #login-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #login-modal.active { display: flex; }
+
+  .modal-box {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: min(400px, 90vw);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+
+  .modal-box h2 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+  }
+
+  .modal-box input {
+    width: 100%;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.95rem;
+    direction: rtl;
+    outline: none;
+    margin-bottom: 0.8rem;
+    transition: border-color 0.2s;
+  }
+
+  .modal-box input:focus { border-color: var(--crimson); }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--soft-gray);
+  }
+
+  /* ??? FOOTER ??? */
+  footer {
+    background: var(--charcoal);
+    color: #aaa;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  footer strong { color: white; }
+
+  /* ??? TABS ??? */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ??? TOAST ??? */
+  #toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--charcoal);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 9998;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ??? CHAT ??? */
+  .msg { display: flex; flex-direction: column; max-width: 80%; }
+  .msg.user-msg { align-self: flex-start; align-items: flex-start; }
+  .msg.bot-msg  { align-self: flex-end;   align-items: flex-end; }
+
+  .user-bubble {
+    background: var(--crimson);
+    color: white;
+    padding: 0.75rem 1.1rem;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    max-width: 100%;
+    word-break: break-word;
+  }
+
+  .bot-bubble {
+    background: var(--light-gray);
+    color: var(--text-dark);
+    padding: 0.75rem 1.1rem;
+    border-radius: 18px 18px 18px 4px;
+    font-size: 0.93rem;
+    line-height: 1.7;
+    max-width: 100%;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+
+  .msg-time {
+    font-size: 0.7rem;
+    color: #ccc;
+    margin-top: 0.25rem;
+    padding: 0 0.3rem;
+  }
+
+  /* Typing dots */
+  .dot {
+    width: 7px; height: 7px;
+    background: var(--soft-gray);
+    border-radius: 50%;
+    animation: blink 1.2s infinite;
+  }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.2; transform: scale(1); }
+    40% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Quick chips */
+  .chip {
+    background: white;
+    border: 1.5px solid rgba(192,57,43,0.2);
+    color: var(--crimson);
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .chip:hover { background: var(--blush); border-color: var(--crimson); }
+
+  #chat-input:focus { border-color: var(--crimson) !important; }
+  #dilemma-situation:focus { border-color: var(--crimson) !important; }
+  #dilemma-harms:focus { border-color: #e74c3c !important; }
+  #dilemma-benefits:focus { border-color: #27ae60 !important; }
+
+  /* ??? RESPONSIVE ??? */
+  @media (max-width: 600px) {
+    .nav-links a { font-size: 0.8rem; padding: 0.4rem 0.6rem; }
+    .hero-title { letter-spacing: -1px; }
+    nav { padding: 0 1rem; }
+    #chat-window { height: 500px; }
+    .msg { max-width: 92%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <span class="nav-logo" onclick="showPage('home')">די לאלימות</span>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">דף הבית</a></li>
+    <li><a href="#" onclick="scrollToAbout()" id="nav-about">קצת עלינו</a></li>
+    <li><a href="#" onclick="showPage('bot')" id="nav-bot">בוט עזרה</a></li>
+    <li><a href="#" onclick="showPage('shared')" id="nav-shared">לוח שיתופי</a></li>
+    <li><a href="#" onclick="showPage('stories')" id="nav-stories">סיפורים מפורסמים</a></li>
+  </ul>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">יחד נאמר —</p>
+      <h1 class="hero-title">
+        <span class="word-di">דִי</span>
+        <span class="word-la">לָ</span>
+        <span class="word-main">אלימות</span>
+      </h1>
+      <p class="hero-sub">
+        כאן תמצאו תמיכה, מידע, ואוזן קשבת.<br>
+        כי אף אחד/אחת לא צריך/ה לעבור את זה לבד.
+      </p>
+      <div class="hero-cta">
+        <a href="#" onclick="showPage('bot')" class="btn-primary">דבר/י עם הבוט שלנו</a>
+        <a href="#" onclick="showPage('shared')" class="btn-outline">שתף/י את הסיפור שלך</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">גלי למטה</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-tag">מי אנחנו</p>
+      <h2 class="section-title">קצת עלינו ??</h2>
+
+      <!-- Main about text -->
+      <div style="
+        background: white;
+        border-radius: 24px;
+        padding: 2.5rem;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+        border-right: 5px solid var(--crimson);
+        position: relative;
+        overflow: hidden;
+      ">
+        <div style="
+          position: absolute; top: -1rem; left: -1rem;
+          font-size: 8rem; opacity: 0.04; line-height: 1;
+          font-family: 'Rubik', sans-serif; font-weight: 900;
+        ">??</div>
+
+        <p style="font-size:0.82rem; letter-spacing:3px; text-transform:uppercase; color:var(--crimson); font-weight:600; margin-bottom:1rem;">
+          בית הספר בן גוריון — כיתה י׳ | הנדסת תוכנה
+        </p>
+
+        <p style="font-size:1.05rem; line-height:1.85; color:var(--charcoal); margin-bottom:1.2rem;">
+          אנחנו תלמידות מבית הספר בן גוריון, כיתה י׳, ולומדות הנדסת תוכנה.
+          בעקבות האקתון שהתקיים בבית הספר והאירועים האחרונים שקרו במדינה —
+          ובייחוד בעצמאות — החלטנו שכדאי לטפל בנושא האלימות בצורה שתוכל
+          לעזור לתלמידים ולתלמידות לשתף באנונימיות וללמוד מסיפורים של אחרים.
+        </p>
+
+        <p style="font-size:1.05rem; line-height:1.85; color:var(--charcoal); margin-bottom:1.2rem;">
+          בבית הספר שלנו מקדמים ערכים של <strong>אחווה, שותפות ואהבת הזולת</strong> —
+          וזה בדיוק מה שהניע אותנו.
+        </p>
+
+        <p style="font-size:1.05rem; line-height:1.85; color:var(--charcoal);">
+          בעקבות כל זאת החלטנו ליצור את האתר הזה, כדי שתלמידים ותלמידות יוכלו
+          <strong>לשתף, להתייעץ וללמוד זה מזו</strong> — בסביבה בטוחה ומכילה.
+        </p>
+
+        <!-- Values pills -->
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1.5rem;">
+          <span style="background:var(--blush); color:var(--crimson); padding:0.35rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">?? אחווה</span>
+          <span style="background:var(--blush); color:var(--crimson); padding:0.35rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">?? שותפות</span>
+          <span style="background:var(--blush); color:var(--crimson); padding:0.35rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">?? אהבת הזולת</span>
+          <span style="background:var(--blush); color:var(--crimson); padding:0.35rem 1rem; border-radius:50px; font-size:0.85rem; font-weight:600;">??? מניעת אלימות</span>
+        </div>
+      </div>
+
+      <!-- Creator cards — names to be filled -->
+      <p style="font-size:0.82rem; letter-spacing:3px; text-transform:uppercase; color:var(--soft-gray); font-weight:500; margin-bottom:1rem;">היוצרות</p>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-avatar">?????</div>
+          <div class="about-name">שקד הרצוג</div>
+          <div class="about-role">מייסדת</div>
+          <div class="about-desc about-placeholder">אני לומדת בכיתה י במגמת הנדסת תוכנה</div>
+        </div>
+        <div class="about-card">
+          <div class="about-avatar">?????</div>
+          <div class="about-name">אור פינקלשטיין</div>
+          <div class="about-role">מייסדת</div>
+          <div class="about-desc about-placeholder">אני לומדת בכיתה י במגמת הנדסת תוכנה</div>
+        </div>
+        <div class="about-card">
+          <div class="about-avatar">?????</div>
+          <div class="about-name">אפרת צבר</div>
+          <div class="about-role">מייסדת</div>
+          <div class="about-desc about-placeholder">אני לומדת בכיתה י במגמת הנדסת תוכנה</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BOT PAGE -->
+<div id="page-bot" class="page">
+  <section style="min-height:100vh; padding-top:80px; background: var(--warm-white);">
+    <div class="section-inner" style="width:100%; max-width:760px;">
+      <p class="section-tag">עזרה מיידית</p>
+      <h2 class="section-title" style="margin-bottom:0.5rem;">בוט העזרה שלנו ??</h2>
+      <p style="color:var(--soft-gray); margin-bottom:1.5rem; font-size:0.95rem;">כאן בשבילך/בשבילכם 24/7 — לשאלות, תמיכה, ומידע. הכל נשמר בפרטיות.</p>
+
+      <!-- Info cards -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:1.8rem;">
+        <div style="background:white; border-radius:16px; padding:1.2rem 1.4rem; box-shadow:0 2px 12px rgba(0,0,0,0.05); display:flex; align-items:flex-start; gap:0.8rem;">
+          <span style="font-size:1.5rem;">??</span>
+          <div>
+            <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.2rem;">סודיות מלאה</div>
+            <div style="font-size:0.8rem; color:var(--soft-gray);">השיחה לא נשמרת ולא מועברת לאף גורם</div>
+          </div>
+        </div>
+        <div style="background:white; border-radius:16px; padding:1.2rem 1.4rem; box-shadow:0 2px 12px rgba(0,0,0,0.05); display:flex; align-items:flex-start; gap:0.8rem;">
+          <span style="font-size:1.5rem;">??</span>
+          <div>
+            <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.2rem;">זמין תמיד</div>
+            <div style="font-size:0.8rem; color:var(--soft-gray);">24/7, ללא המתנה, ללא שיפוטיות</div>
+          </div>
+        </div>
+        <div style="background:white; border-radius:16px; padding:1.2rem 1.4rem; box-shadow:0 2px 12px rgba(0,0,0,0.05); display:flex; align-items:flex-start; gap:0.8rem;">
+          <span style="font-size:1.5rem;">??</span>
+          <div>
+            <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.2rem;">תמיכה ועצה</div>
+            <div style="font-size:0.8rem; color:var(--soft-gray);">פתרון דילמות, מידע, והקשבה</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot embed card -->
+      <div style="
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 4px 30px rgba(192,57,43,0.08);
+        overflow: hidden;
+        border: 1.5px solid rgba(192,57,43,0.1);
+      ">
+        <!-- Card header -->
+        <div style="background:linear-gradient(135deg,var(--crimson),var(--deep-red)); padding:1.2rem 1.8rem; display:flex; align-items:center; gap:1rem;">
+          <div style="width:40px; height:40px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">??</div>
+          <div>
+            <div style="color:white; font-family:'Rubik',sans-serif; font-weight:800; font-size:1.05rem;">עוזר הנפש</div>
+            <div style="color:rgba(255,255,255,0.75); font-size:0.8rem;">בוט תמיכה לתלמידים ותלמידות</div>
+          </div>
+          <div style="margin-right:auto; display:flex; align-items:center; gap:0.4rem;">
+            <span style="width:8px; height:8px; background:#4ade80; border-radius:50%; display:inline-block; box-shadow:0 0 6px #4ade80;"></span>
+            <span style="color:rgba(255,255,255,0.8); font-size:0.78rem;">מחובר</span>
+          </div>
+        </div>
+
+        <!-- Open button area -->
+        <div style="padding:2.5rem 2rem; text-align:center;">
+          <p style="font-size:1rem; color:var(--charcoal); line-height:1.7; margin-bottom:1.5rem; max-width:480px; margin-left:auto; margin-right:auto;">
+            לחצ/י על הכפתור כדי לפתוח את הבוט.<br>
+            <span style="font-size:0.88rem; color:var(--soft-gray);">הוא ייפתח בלשונית חדשה — תוכל/י לחזור לאתר בכל עת.</span>
+          </p>
+
+          <a href="https://gemini.google.com/gem/1aPFgABxbXv6762PHdYu1C2Lg_icBd4j8?"
+             target="_blank"
+             class="btn-primary"
+             style="font-size:1.05rem; padding:1rem 2.5rem; display:inline-flex; align-items:center; gap:0.6rem; text-decoration:none;">
+            <span>פתח/י את הבוט</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+
+          <!-- Suggested openers -->
+          <div style="margin-top:1.8rem; border-top:1px solid var(--light-gray); padding-top:1.5rem;">
+            <p style="font-size:0.82rem; color:var(--soft-gray); margin-bottom:0.9rem; font-weight:500;">?? אפשר להתחיל בלשאול:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">
+              <span class="chip" style="cursor:default;">?? מה עושים כשנמצאים בסכנה?</span>
+              <span class="chip" style="cursor:default;">?? מספרי חירום</span>
+              <span class="chip" style="cursor:default;">?? אני צריך/ה לדבר עם מישהו</span>
+              <span class="chip" style="cursor:default;">?? יש לי דילמה</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick chips (dilemma only — stays in page) -->
+      <div style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.5rem;" id="quick-chips">
+        <button class="chip chip-dilemma" onclick="startDilemmaMode()" style="background:var(--blush); border-color:var(--crimson); font-weight:700;">?? פתרון דילמה מודרכת (ללא צ׳אט)</button>
+      </div>
+
+      <!-- DILEMMA PANEL -->
+      <div id="dilemma-panel" style="display:none; margin-top:1.2rem;">
+        <div style="background:white; border-radius:20px; border:2px solid rgba(192,57,43,0.15); overflow:hidden; box-shadow:0 4px 24px rgba(192,57,43,0.07);">
+
+          <!-- Header -->
+          <div style="background:linear-gradient(135deg,var(--crimson),var(--deep-red)); padding:1.2rem 1.5rem; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="color:white; font-family:'Rubik',sans-serif; font-weight:800; font-size:1.1rem;">?? מצב פתרון דילמה</div>
+              <div style="color:rgba(255,255,255,0.75); font-size:0.8rem; margin-top:2px;" id="dilemma-step-label">שלב 1 מתוך 3</div>
+            </div>
+            <button onclick="closeDilemmaMode()" style="background:rgba(255,255,255,0.15); border:none; color:white; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">?</button>
+          </div>
+
+          <!-- Progress bar -->
+          <div style="height:4px; background:var(--light-gray);">
+            <div id="dilemma-progress" style="height:100%; background:var(--accent-gold); transition:width 0.5s ease; width:33%;"></div>
+          </div>
+
+          <!-- Step 1: situation -->
+          <div id="dilemma-step-1" style="padding:1.5rem;">
+            <p style="font-weight:600; margin-bottom:0.6rem; color:var(--text-dark);">תאר/י את המצב או הדילמה שלך:</p>
+            <p style="font-size:0.85rem; color:var(--soft-gray); margin-bottom:1rem;">כתוב/י בחופשיות — מה קרה, מה אתה/את מתלבט/ת לגבי, ומה האפשרויות שאתה/את שוקל/ת.</p>
+            <textarea id="dilemma-situation" rows="4" placeholder="לדוגמה: חבר שלי מוכה בבית ולא רוצה שאדווח, אני לא יודעת מה לעשות..." style="width:100%; border:1.5px solid var(--light-gray); border-radius:12px; padding:0.9rem 1rem; font-family:'Heebo',sans-serif; font-size:0.92rem; direction:rtl; resize:vertical; outline:none; transition:border-color 0.2s; line-height:1.6;"></textarea>
+            <div style="text-align:left; margin-top:1rem;">
+              <button onclick="dilemmaNext(1)" class="btn-primary" style="padding:0.7rem 1.8rem;">המשך ?</button>
+            </div>
+          </div>
+
+          <!-- Step 2: values -->
+          <div id="dilemma-step-2" style="display:none; padding:1.5rem;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div>
+                <p style="font-weight:700; color:#c0392b; margin-bottom:0.5rem;">?? באיזה ערכים זה פוגע?</p>
+                <p style="font-size:0.82rem; color:var(--soft-gray); margin-bottom:0.8rem;">מה עלול להיפגע — ערכים, אנשים, יחסים, עקרונות?</p>
+                <textarea id="dilemma-harms" rows="5" placeholder="לדוגמה: פגיעה בסודיות, אובדן האמון של החבר, ביטול האוטונומיה שלו..." style="width:100%; border:1.5px solid #ffd5d0; border-radius:12px; padding:0.9rem 1rem; font-family:'Heebo',sans-serif; font-size:0.88rem; direction:rtl; resize:vertical; outline:none; transition:border-color 0.2s; line-height:1.6; background:#fffafa;"></textarea>
+              </div>
+              <div>
+                <p style="font-weight:700; color:#27ae60; margin-bottom:0.5rem;">? באיזה ערכים זה תורם?</p>
+                <p style="font-size:0.82rem; color:var(--soft-gray); margin-bottom:0.8rem;">מה עשוי להרוויח — ביטחון, צדק, רווחה, יחסים?</p>
+                <textarea id="dilemma-benefits" rows="5" placeholder="לדוגמה: הגנה על בטחון החבר, מניעת אלימות נוספת, ערך של אחריות חברתית..." style="width:100%; border:1.5px solid #c3e6cb; border-radius:12px; padding:0.9rem 1rem; font-family:'Heebo',sans-serif; font-size:0.88rem; direction:rtl; resize:vertical; outline:none; transition:border-color 0.2s; line-height:1.6; background:#f4fff7;"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:1.2rem; align-items:center;">
+              <button onclick="dilemmaBack()" style="background:none; border:none; color:var(--soft-gray); cursor:pointer; font-family:'Heebo',sans-serif; font-size:0.9rem;">? חזרה</button>
+              <button onclick="dilemmaNext(2)" class="btn-primary" style="padding:0.7rem 1.8rem;">?? נתח את הדילמה שלי</button>
+            </div>
+          </div>
+
+          <!-- Step 3: analysis loading / result -->
+          <div id="dilemma-step-3" style="display:none; padding:1.5rem;">
+            <div id="dilemma-loading" style="text-align:center; padding:2rem 0;">
+              <div style="display:inline-flex; gap:6px; margin-bottom:1rem;">
+                <span class="dot" style="width:10px;height:10px;"></span>
+                <span class="dot" style="width:10px;height:10px;animation-delay:0.2s"></span>
+                <span class="dot" style="width:10px;height:10px;animation-delay:0.4s"></span>
+              </div>
+              <p style="color:var(--soft-gray); font-size:0.9rem;">מנתח את הדילמה שלך...</p>
+            </div>
+            <div id="dilemma-result" style="display:none;">
+              <div style="background:linear-gradient(135deg,#fff8f5,#fff0ec); border-radius:16px; padding:1.5rem; border-right:4px solid var(--crimson); margin-bottom:1.2rem;">
+                <div id="dilemma-analysis-text" style="font-size:0.93rem; line-height:1.8; color:var(--text-dark); white-space:pre-wrap;"></div>
+              </div>
+              <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+                <button onclick="sendDilemmaToChat()" class="btn-primary" style="padding:0.65rem 1.4rem; font-size:0.88rem;">?? המשיכי לדבר על זה בצ'אט</button>
+                <button onclick="resetDilemma()" class="btn-outline" style="padding:0.65rem 1.4rem; font-size:0.88rem;">?? דילמה חדשה</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p style="font-size:0.75rem; color:#ccc; text-align:center; margin-top:1rem;">
+        ?? הבוט מבוסס בינה מלאכותית ואינו תחליף לייעוץ מקצועי. במצב חירום — חייגי 110
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- SHARED BOARD PAGE -->
+<div id="page-shared" class="page">
+  <section id="shared" style="min-height:100vh; padding-top:80px;">
+    <div class="section-inner">
+      <p class="section-tag">קהילה ותמיכה</p>
+      <h2 class="section-title">לוח שיתופי</h2>
+
+      <div class="story-form">
+        <h3>שתפי את הסיפור שלך</h3>
+        <span class="anon-badge">?? אנונימי לחלוטין</span>
+        <textarea id="story-input" placeholder="כתוב/י את הסיפור שלך כאן... הכל נשמר בסודיות מלאה."></textarea>
+        <div class="form-footer">
+          <span class="anon-note">?? הסיפור שלך יפורסם באנונימיות מלאה</span>
+          <button class="btn-primary" onclick="postStory()">פרסם/י</button>
+        </div>
+      </div>
+
+      <div class="stories-grid" id="shared-stories">
+        <div class="empty-board">
+          עדיין אין סיפורים. היי הראשונה לשתף ??
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PUBLISHED STORIES PAGE -->
+<div id="page-stories" class="page">
+  <section id="stories" style="min-height:100vh; padding-top:80px;">
+    <div class="section-inner">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:2rem;">
+        <div>
+          <p class="section-tag">סיפורים אמיתיים</p>
+          <h2 class="section-title" style="margin-bottom:0;">סיפורים מפורסמים</h2>
+        </div>
+        <button class="btn-outline" onclick="openLogin()" style="font-size:0.85rem; padding:0.6rem 1.2rem;">
+          ?? כניסת יוצרות
+        </button>
+      </div>
+
+      <div class="published-grid" id="published-stories">
+      </div>
+
+      <!-- ADMIN PANEL -->
+      <div id="admin-panel">
+        <h3>? הוספת סיפור מפורסם (יוצרות בלבד)</h3>
+        <div class="admin-form">
+          <input type="text" id="pub-title" placeholder="כותרת הסיפור">
+          <textarea id="pub-body" placeholder="תוכן הסיפור..."></textarea>
+          <input type="url" id="pub-link" placeholder="קישור לקריאה נוספת (אופציונלי) — https://...">
+          <button class="btn-primary" onclick="addPublishedStory()">פרסמי סיפור</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal">
+  <div class="modal-box" style="position:relative;">
+    <button class="modal-close" onclick="closeLogin()">?</button>
+    <h2>כניסת יוצרות ??</h2>
+    <input type="password" id="admin-password" placeholder="סיסמה">
+    <button class="btn-primary" style="width:100%; margin-top:0.5rem;" onclick="checkLogin()">כניסה</button>
+    <p style="font-size:0.8rem; color:#bbb; margin-top:1rem;">גישה ליוצרות האתר בלבד</p>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>די לאלימות</strong><br>
+  אתר זה נוצר מתוך אהבה ורצון לשינוי ??<br>
+  <span style="font-size:0.8rem; opacity:0.6;">כל הסיפורים המשותפים נשמרים באנונימיות מלאה</span>
+</footer>
+
+<script>
+  // ??? STATE ???
+  const ADMIN_PASS = "sh_or_ef2026"; // שנו את הסיסמה!
+  let isAdmin = false;
+  let stories = JSON.parse(localStorage.getItem('shared_stories') || '[]');
+  let likes = JSON.parse(localStorage.getItem('story_likes') || '{}');
+  let publishedStories = JSON.parse(localStorage.getItem('published_stories') || '[]');
+
+  // ??? NAV ???
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const map = { home: 'nav-home', bot: 'nav-bot', shared: 'nav-shared', stories: 'nav-stories' };
+    if (map[name]) document.getElementById(map[name]).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (name === 'shared') renderSharedStories();
+    if (name === 'stories') renderPublishedStories();
+    return false;
+  }
+
+  function scrollToAbout() {
+    showPage('home');
+    setTimeout(() => {
+      document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+    return false;
+  }
+
+  // ??? NAVBAR SCROLL ???
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ??? TOAST ???
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ??? SHARED STORIES ???
+  function postStory() {
+    const text = document.getElementById('story-input').value.trim();
+    if (!text) return toast('אנא כתבי משהו לפני פרסום ??');
+    stories.unshift({ text, time: Date.now(), likes: 0 });
+    localStorage.setItem('shared_stories', JSON.stringify(stories));
+    document.getElementById('story-input').value = '';
+    renderSharedStories();
+    toast('הסיפור שלך פורסם באנונימיות ??');
+  }
+
+  function renderSharedStories() {
+    const grid = document.getElementById('shared-stories');
+    if (!stories.length) {
+      grid.innerHTML = '<div class="empty-board">עדיין אין סיפורים. היה/י הראשון/ה לשתף ??</div>';
+      return;
+    }
+    grid.innerHTML = stories.map((s, i) => `
+      <div class="story-card">
+        <span class="quote-mark">"</span>
+        <p class="story-text">${escapeHtml(s.text)}</p>
+        <div class="story-meta">
+          <span>${timeAgo(s.time)}</span>
+          <button class="like-btn ${likes[i] ? 'liked' : ''}" onclick="likeStory(${i})">
+            ? ${s.likes || 0}
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function likeStory(i) {
+    if (likes[i]) return;
+    stories[i].likes = (stories[i].likes || 0) + 1;
+    likes[i] = true;
+    localStorage.setItem('shared_stories', JSON.stringify(stories));
+    localStorage.setItem('story_likes', JSON.stringify(likes));
+    renderSharedStories();
+  }
+
+  // ??? PUBLISHED STORIES ???
+  function renderPublishedStories() {
+    const container = document.getElementById('published-stories');
+    if (!publishedStories.length) {
+      container.innerHTML = '<div class="empty-board">עדיין אין סיפורים מפורסמים. היוצרות יוסיפו בקרוב ??</div>';
+      return;
+    }
+    container.innerHTML = publishedStories.map(s => `
+      <div class="pub-story">
+        <div class="pub-story-header">
+          <span class="pub-label">? סיפור מפורסם</span>
+          <span class="pub-story-title">${escapeHtml(s.title)}</span>
+        </div>
+        <p class="pub-story-body">${escapeHtml(s.body)}</p>
+        ${s.link ? `
+        <div style="margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--light-gray);">
+          <span style="font-size:0.82rem; color:var(--soft-gray); display:block; margin-bottom:0.4rem; font-weight:500;">רוצים ללמוד יותר?</span>
+          <a href="${escapeHtml(s.link)}" target="_blank" rel="noopener" style="
+            display:inline-flex; align-items:center; gap:0.4rem;
+            color:var(--crimson); font-size:0.88rem; font-weight:600;
+            text-decoration:none; transition:gap 0.2s;
+          " onmouseenter="this.style.gap='0.65rem'" onmouseleave="this.style.gap='0.4rem'">
+            לקריאה נוספת ?
+          </a>
+        </div>` : ''}
+      </div>
+    `).join('');
+  }
+
+  function addPublishedStory() {
+    const title = document.getElementById('pub-title').value.trim();
+    const body = document.getElementById('pub-body').value.trim();
+    const link = document.getElementById('pub-link').value.trim();
+    if (!title || !body) return toast('אנא מלאי כותרת ותוכן');
+    publishedStories.push({ title, body, link });
+    localStorage.setItem('published_stories', JSON.stringify(publishedStories));
+    document.getElementById('pub-title').value = '';
+    document.getElementById('pub-body').value = '';
+    document.getElementById('pub-link').value = '';
+    renderPublishedStories();
+    toast('הסיפור פורסם בהצלחה ?');
+  }
+
+  // ??? LOGIN ???
+  function openLogin() {
+    if (isAdmin) {
+      document.getElementById('admin-panel').style.display = 'block';
+      document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      document.getElementById('login-modal').classList.add('active');
+    }
+  }
+
+  function closeLogin() {
+    document.getElementById('login-modal').classList.remove('active');
+    document.getElementById('admin-password').value = '';
+  }
+
+  function checkLogin() {
+    const pw = document.getElementById('admin-password').value;
+    if (pw === ADMIN_PASS) {
+      isAdmin = true;
+      closeLogin();
+      document.getElementById('admin-panel').style.display = 'block';
+      toast('ברוכה הבאה, יוצרת! ?');
+    } else {
+      toast('סיסמה שגויה');
+      document.getElementById('admin-password').value = '';
+    }
+  }
+
+  document.getElementById('admin-password').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkLogin();
+  });
+
+  document.getElementById('login-modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('login-modal')) closeLogin();
+  });
+
+  // ??? UTILS ???
+  function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function timeAgo(ts) {
+    const diff = Date.now() - ts;
+    const m = Math.floor(diff / 60000);
+    if (m < 1) return 'עכשיו';
+    if (m < 60) return `לפני ${m} דקות`;
+    const h = Math.floor(m / 60);
+    if (h < 24) return `לפני ${h} שעות`;
+    return `לפני ${Math.floor(h / 24)} ימים`;
+  }
+
+  // ??? DILEMMA MODE ???
+  let dilemmaData = {};
+
+  function startDilemmaMode() {
+    document.getElementById('dilemma-panel').style.display = 'block';
+    document.getElementById('quick-chips').style.display = 'none';
+    document.getElementById('dilemma-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    resetDilemma();
+  }
+
+  function closeDilemmaMode() {
+    document.getElementById('dilemma-panel').style.display = 'none';
+    document.getElementById('quick-chips').style.display = 'flex';
+  }
+
+  function setDilemmaStep(n) {
+    [1,2,3].forEach(i => {
+      document.getElementById(`dilemma-step-${i}`).style.display = i === n ? 'block' : 'none';
+    });
+    const labels = ['שלב 1 מתוך 3 — תיאור המצב', 'שלב 2 מתוך 3 — ניתוח ערכים', 'שלב 3 מתוך 3 — המלצה'];
+    document.getElementById('dilemma-step-label').textContent = labels[n-1];
+    document.getElementById('dilemma-progress').style.width = (n * 33.3) + '%';
+  }
+
+  function dilemmaNext(from) {
+    if (from === 1) {
+      const sit = document.getElementById('dilemma-situation').value.trim();
+      if (!sit) { toast('אנא תארי את המצב תחילה ??'); return; }
+      dilemmaData.situation = sit;
+      setDilemmaStep(2);
+    } else if (from === 2) {
+      const harms = document.getElementById('dilemma-harms').value.trim();
+      const benefits = document.getElementById('dilemma-benefits').value.trim();
+      if (!harms || !benefits) { toast('אנא מלאי את שני הצדדים ??'); return; }
+      dilemmaData.harms = harms;
+      dilemmaData.benefits = benefits;
+      setDilemmaStep(3);
+      runDilemmaAnalysis();
+    }
+  }
+
+  function dilemmaBack() {
+    setDilemmaStep(1);
+  }
+
+  function resetDilemma() {
+    dilemmaData = {};
+    document.getElementById('dilemma-situation').value = '';
+    document.getElementById('dilemma-harms').value = '';
+    document.getElementById('dilemma-benefits').value = '';
+    document.getElementById('dilemma-loading').style.display = 'block';
+    document.getElementById('dilemma-result').style.display = 'none';
+    setDilemmaStep(1);
+  }
+
+  async function runDilemmaAnalysis() {
+    document.getElementById('dilemma-loading').style.display = 'block';
+    document.getElementById('dilemma-result').style.display = 'none';
+
+    const prompt = `תלמיד/ה פנה/תה עם דילמה. אנא נתח/י אותה לעומק ותן/י המלצה מעשית.
+
+**המצב:**
+${dilemmaData.situation}
+
+**ערכים שנפגעים:**
+${dilemmaData.harms}
+
+**ערכים שמרוויחים:**
+${dilemmaData.benefits}
+
+אנא ענה/י בעברית בלבד, במבנה הבא:
+
+?? **הבנת הדילמה**
+[ניסוח קצר ומדויק של הדילמה בשתי שורות — הראה שהבנת את הלב של הבעיה]
+
+?? **ניתוח הערכים**
+[ניתח את המתח בין הערכים שהתלמיד ציין. אילו ערכים חשובים יותר במצב הזה ולמה? אל תהיה שטחי — תן עומק אמיתי]
+
+? **הפתרון המומלץ**
+[תן המלצה ברורה ומעשית — מה לעשות, שלב אחרי שלב. הסבר למה זה הפתרון הטוב ביותר לאור הערכים]
+
+?? **מה חשוב לזכור**
+[משפט תמיכה אחד — חזק את הבחירה של התלמיד לחשוב על זה ולבקש עזרה]`;
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1200,
+          system: SYSTEM_PROMPT,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+
+      const data = await response.json();
+      const analysis = data.content?.find(b => b.type === 'text')?.text || 'לא הצלחתי לנתח את הדילמה. נסי שוב.';
+
+      dilemmaData.analysis = analysis;
+      document.getElementById('dilemma-analysis-text').textContent = analysis;
+      document.getElementById('dilemma-loading').style.display = 'none';
+      document.getElementById('dilemma-result').style.display = 'block';
+
+    } catch(err) {
+      document.getElementById('dilemma-analysis-text').textContent = 'אירעה שגיאת חיבור. נסי שוב עוד רגע ??';
+      document.getElementById('dilemma-loading').style.display = 'none';
+      document.getElementById('dilemma-result').style.display = 'block';
+    }
+  }
+
+  function sendDilemmaToChat() {
+    closeDilemmaMode();
+    // Inject the full context into chat history silently, then show summary message
+    const summary = `דנתי בדילמה: "${dilemmaData.situation.substring(0,80)}${dilemmaData.situation.length > 80 ? '...' : ''}"`;
+    chatHistory.push({ role: 'user', content: `הנה הדילמה שלי:\n${dilemmaData.situation}\n\nהערכים שנפגעים: ${dilemmaData.harms}\nהערכים שמרוויחים: ${dilemmaData.benefits}\n\nקיבלתי ניתוח — אני רוצה להמשיך לדבר על זה.` });
+    chatHistory.push({ role: 'assistant', content: dilemmaData.analysis });
+    appendMessage('user', summary);
+    appendMessage('bot', 'בוודאי ?? ראיתי את הדילמה שלך וניתחנו אותה ביחד. מה עוד מקשה עליך/עליכם? יש שאלות נוספות שעלו?');
+    document.getElementById('quick-chips').style.display = 'none';
+  }
+  const SYSTEM_PROMPT = `אתה "עוזר הנפש" — בוט תמיכה ייעודי לתלמידים באתר "די לאלימות".
+תפקידך לסייע לתלמידים להתמודד עם דילמות, קשיים רגשיים, מצבים של אלימות (כלפיהם או כלפי אחרים), ולתת מענה עמוק, אנושי ומקצועי — בדומה לשיחה עם פסיכולוג בית ספרי.
+
+עקרונות ליבה:
+1. **הקשבה אמיתית** — לפני כל עצה, הראה שהבנת את מה שהמשתמש חווה. חזור על הרגשות שהוא ביטא, הכר בכאב שלו.
+2. **עומק** — אל תתן תשובות שטחיות. שאל שאלות עומק כשצריך, הצע מסגרות לחשיבה, עזור לתלמיד להבין את עצמו.
+3. **פתרון בעיות ללא אלימות** — תמיד הצע דרכים שאינן פוגעות באחרים. אם תלמיד מבטא רצון לפגוע במישהו — הכר ברגש הכעס אבל הפנה לדרכי התמודדות בריאות בלבד.
+4. **מידע מעשי** — כשרלוונטי, ספק מידע על זכויות, ארגוני עזרה, ומספרי חירום (110 משטרה, 118 ERAN — קו נפש, 1202 עמותת איל).
+5. **גבולות ברורים** — אתה לא מחליף פסיכולוג מקצועי. במצבים חמורים (סכנת נפשות, פגיעה עצמית) — הפנה מיידית לגורמי עזרה ומבוגר אחראי.
+6. **שפה** — ענה תמיד בעברית בלבד. דבר בגובה העיניים, בחמימות אבל ברצינות. פנה תמיד בלשון זכר ונקבה גם יחד (לדוגמה: "אתה/את", "יכול/ה", "חש/ה").
+7. **אסור** — לעולם אל תציע, לא ישירות ולא בעקיפין, פעולות שעלולות לפגוע בבני אדם.`;
+
+  let chatHistory = [];
+  let isBotTyping = false;
+
+  function nowTime() {
+    return new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function appendMessage(role, text) {
+    const msgs = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = `msg ${role === 'user' ? 'user-msg' : 'bot-msg'}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = role === 'user' ? 'user-bubble' : 'bot-bubble';
+    bubble.textContent = text;
+
+    const time = document.createElement('div');
+    time.className = 'msg-time';
+    time.textContent = nowTime();
+
+    div.appendChild(bubble);
+    div.appendChild(time);
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return bubble;
+  }
+
+  function setTyping(show) {
+    document.getElementById('typing-indicator').style.display = show ? 'block' : 'none';
+    const msgs = document.getElementById('chat-messages');
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function handleChatKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  }
+
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  function quickSend(text) {
+    document.getElementById('chat-input').value = text;
+    sendMessage();
+    // hide chips after first use
+    document.getElementById('quick-chips').style.display = 'none';
+  }
+
+  async function sendMessage() {
+    if (isBotTyping) return;
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Add user message
+    appendMessage('user', text);
+    chatHistory.push({ role: 'user', content: text });
+    input.value = '';
+    input.style.height = 'auto';
+
+    // Hide chips
+    document.getElementById('quick-chips').style.display = 'none';
+
+    // Show typing
+    isBotTyping = true;
+    document.getElementById('send-btn').style.opacity = '0.5';
+    setTyping(true);
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: SYSTEM_PROMPT,
+          messages: chatHistory
+        })
+      });
+
+      const data = await response.json();
+      const reply = data.content?.find(b => b.type === 'text')?.text || 'מצטערת, משהו השתבש. נסי שוב.';
+
+      setTyping(false);
+      appendMessage('bot', reply);
+      chatHistory.push({ role: 'assistant', content: reply });
+
+    } catch (err) {
+      setTyping(false);
+      appendMessage('bot', 'אופס, נראה שיש בעיית חיבור. אנא נסי שוב עוד רגע ??');
+    }
+
+    isBotTyping = false;
+    document.getElementById('send-btn').style.opacity = '1';
+  }
+</script>
+</body>
+</html>
